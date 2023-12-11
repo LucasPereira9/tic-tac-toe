@@ -1,11 +1,10 @@
 'use client';
 
 import { useEffect } from "react";
-import { useGlobalContext } from "./Context"
-import Link from "next/link";
+import { useGlobalContext } from "../../app/Context/index"
 
 
-export default function Home() {
+export default function Configuration() {
   const {userAge, userName, setUserAge, setUserName} = useGlobalContext()
 
   useEffect(() => {
@@ -14,16 +13,7 @@ export default function Home() {
   return (
     <main>
       <div>
-     <h1>OLA, MUNDO!</h1>
-     <li>
-     <Link  href="/Configurations">
-     configg</Link>
-     <div>
-     <Link  href="/Test">
-     Test</Link>
-     </div>
-    
-     </li>
+     <h1>OLA, Configuration!</h1>
       </div>
     </main>
   )
