@@ -3,19 +3,21 @@
 import { useEffect } from "react";
 import { useGlobalContext } from "./Context"
 import Link from "next/link";
+import styles from './page.module.css'
+import theme from "./global/theme";
 
 
 export default function Home() {
   const {userAge, userName, setUserAge, setUserName} = useGlobalContext()
 
   useEffect(() => {
-    console.log('user: ', userAge, userName)
+    console.log('user: ', userAge, userName, theme)
   },[userAge, userName])
   return (
-    <main>
+    <div className={styles.Card}>
       <div>
-     <h1>OLA, MUNDO!</h1>
-     <li>
+     <h1 style={{color: '#001f3d'}}>JOGO DA VELHA DO LUKITAS</h1>
+     {/* <li>
      <Link  href="/Configurations">
      configg</Link>
      <div>
@@ -23,8 +25,8 @@ export default function Home() {
      Test</Link>
      </div>
     
-     </li>
+     </li> */}
       </div>
-    </main>
+    </div>
   )
 }
