@@ -8,13 +8,15 @@
     justify-content: center;
     height: 100vh;
   }
-.card {
-  background: #e87a00; 
+  .card {
+  background: #e87a00;
   display: flex;
   justify-content: center;
-  height: 65vh;  
+  align-items: center;
+  height: 65vh;
   width: 70%;
   border-radius: 20px;
+  box-shadow: 0 16px 16px rgba(40, 28, 28, 0.555);
 }
 .newGameButton {
   display: flex;
