@@ -1,0 +1,26 @@
+.buttonWrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .buttonText {
+    font-size: 40px;
+    color: #333;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .animationLine {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #D89c60; 
+    transition: width 0.5s ease; 
+  }
+  
+  .animationLine.active {
+    width: 100%;
+  }
