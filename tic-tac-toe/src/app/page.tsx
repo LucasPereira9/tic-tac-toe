@@ -1,12 +1,12 @@
 'use client';
 
 import { useGlobalContext } from "./Context"
-import Link from "next/link";
 import styles from './page.module.css'
 import theme from "./global/theme";
-import AnimatedButton from "./components/primaryButton";
+import PrimaryButton from "./components/primaryButton";
 import React from "react";
 import { useSpring, animated } from 'react-spring';
+import Credits from "./components/credits";
 
 
 export default function Home() {
@@ -52,22 +52,21 @@ export default function Home() {
         <animated.div style={fadeOutProps}>
         <h1 style={{ color: theme.colors.tertiary }}>JOGO DA VELHA DO LUKITAS</h1>
           <div className={styles.newGameButton}>
-            <AnimatedButton onClick={() => console.log('olaa')} title="Novo Jogo" />
+            <PrimaryButton onClick={() => console.log('olaa')} title="Novo Jogo" />
           </div>
           <div className={styles.buttonContainer}>
-            <AnimatedButton onClick={() => console.log('olaa2')} title="Configurações" />
+            <PrimaryButton onClick={() => console.log('olaa2')} title="Histórico" />
           </div>
           <div className={styles.buttonContainer}>
-            <AnimatedButton onClick={handleCreditsClick} title="Créditos" />
+            <PrimaryButton onClick={handleCreditsClick} title="Créditos" />
           </div>
         </animated.div>
         <animated.div style={{ ...fadeInProps, position: 'absolute', top: 0, left: 22, right: 0, marginTop: '16%', display: "flex", justifyContent: "center", }}>
-          {showCredits ? (
+          {showCredits && (
             <div>
-              <h1>llslala</h1>
-            <AnimatedButton onClick={handleBackClick} title="Voltar" />
+              <Credits goBack={handleBackClick} />
             </div>
-          ) : null}
+          ) }
         </animated.div>
     </div>
   );

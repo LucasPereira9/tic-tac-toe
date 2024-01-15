@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './primaryButton.module.css';
 import { IPrimaryButtonProps } from './primaryButton.structure';
 
-const AnimatedButton = (props: IPrimaryButtonProps) => {
+const PrimaryButton = (props: IPrimaryButtonProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const playClickSound = () => {
@@ -28,4 +28,4 @@ const AnimatedButton = (props: IPrimaryButtonProps) => {
   );
 };
 
-export default AnimatedButton;
+export default PrimaryButton;
