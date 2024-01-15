@@ -1,7 +1,7 @@
-.container { 
+.container {
   flex: 1;
-  background: #045174
-  }
+  background: linear-gradient(to bottom, #045174, #034871, #031a37);
+}
   .centeredContainer {
     display: flex;
     align-items: center;

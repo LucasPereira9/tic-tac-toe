@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100vh;
+  justify-content: space-between;
+  }
+  .cards {
+    display: flex;
+    flex-direction: column;
+    height: 26vh;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .link {
+    text-decoration: none;
+  }
