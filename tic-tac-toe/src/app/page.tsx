@@ -7,12 +7,14 @@ import PrimaryButton from "./components/primaryButton";
 import React from "react";
 import { useSpring, animated } from 'react-spring';
 import Credits from "./components/credits";
+import NewGameData from "./components/newGameData";
 
 
 export default function Home() {
   const {userAge, userName, setUserAge, setUserName} = useGlobalContext()
   const [isAudioPlaying, setIsAudioPlaying] = React.useState(false);
   const [showCredits, setShowCredits] = React.useState(false);
+  const [showNewGame, setShowNewGame] = React.useState(false);
 
   React.useEffect(() => {
     const startAudio = () => {
@@ -30,44 +32,41 @@ export default function Home() {
   }, [isAudioPlaying]);
 
   const fadeOutProps = useSpring({
-    opacity: showCredits ? 0 : 1,
-    transform: showCredits ? 'translateY(-100%)' : 'translateY(0%)',
+    opacity: showCredits || showNewGame ? 0 : 1,
+    transform: showCredits || showNewGame ? 'translateY(-100%)' : 'translateY(0%)',
   });
-  
+
   const fadeInProps = useSpring({
-    opacity: showCredits ? 1 : 0,
-    transform: showCredits ? 'translateY(0%)' : 'translateY(-100%)',
+    opacity: showCredits || showNewGame ? 1 : 0,
+    transform: showCredits || showNewGame ? 'translateY(0%)' : 'translateY(-100%)',
   });
-
-  const handleCreditsClick = () => {
-    setShowCredits(true);
-  };
-
-  const handleBackClick = () => {
-    setShowCredits(false);
-  };
 
   return (
     <div className={styles.card}>
-        <animated.div style={fadeOutProps}>
+      <animated.div style={fadeOutProps}>
         <h1 style={{ color: theme.colors.tertiary }}>JOGO DA VELHA DO LUKITAS</h1>
-          <div className={styles.newGameButton}>
-            <PrimaryButton onClick={() => console.log('olaa')} title="Novo Jogo" />
+        <div className={styles.newGameButton}>
+          <PrimaryButton onClick={() =>  setShowNewGame(true)} title="Novo Jogo" />
+        </div>
+        <div className={styles.buttonContainer}>
+          <PrimaryButton onClick={() => console.log('olaa2')} title="Histórico" />
+        </div>
+        <div className={styles.buttonContainer}>
+          <PrimaryButton onClick={() =>  setShowCredits(true)} title="Créditos" />
+        </div>
+      </animated.div>
+      <animated.div style={{ ...fadeInProps, position: 'absolute', top: 0, left: 22, right: 0, marginTop: '16%', display: "flex", justifyContent: "center", }}>
+        {showCredits && (
+          <div>
+            <Credits goBack={() => setShowCredits(false)} />
           </div>
-          <div className={styles.buttonContainer}>
-            <PrimaryButton onClick={() => console.log('olaa2')} title="Histórico" />
+        )}
+        {showNewGame && (
+          <div>
+           <NewGameData />
           </div>
-          <div className={styles.buttonContainer}>
-            <PrimaryButton onClick={handleCreditsClick} title="Créditos" />
-          </div>
-        </animated.div>
-        <animated.div style={{ ...fadeInProps, position: 'absolute', top: 0, left: 22, right: 0, marginTop: '16%', display: "flex", justifyContent: "center", }}>
-          {showCredits && (
-            <div>
-              <Credits goBack={handleBackClick} />
-            </div>
-          ) }
-        </animated.div>
+        )}
+      </animated.div>
     </div>
   );
 }
