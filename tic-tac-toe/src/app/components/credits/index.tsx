@@ -10,12 +10,13 @@ const Credits = (props: ICreditsProps) => {
 const githubLink = 'https://github.com/LucasPereira9?tab=repositories';
 const linkedinLink = 'https://www.linkedin.com/in/lucas-almeida-5280b9206/';
 
+
   return (
     <div className={styles.container}>
        <Link className={styles.link} href={githubLink} passHref>
         <div className={styles.cards}>
         <Image src="/assets/images/github.png" alt="GitHub" width={100} height={100} />
-            <PrimaryButton title='Github' onClick={() => console.log('github')} />
+            <PrimaryButton title='Github' onClick={() => window.location.href = githubLink} />
         </div>
        </Link>
         <div className={styles.cards}>
@@ -30,7 +31,7 @@ const linkedinLink = 'https://www.linkedin.com/in/lucas-almeida-5280b9206/';
         <Link className={styles.link} href={linkedinLink} passHref>
         <div className={styles.cards}>
         <Image src="/assets/images/linkedin.png" alt="linkedin" width={100} height={100} />
-            <PrimaryButton title='LinkedIn' onClick={() => console.log('LinkedIn')} />
+            <PrimaryButton title='LinkedIn' onClick={() => window.location.href = linkedinLink} />
         </div>
        </Link>
     </div>
