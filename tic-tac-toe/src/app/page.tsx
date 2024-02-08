@@ -1,6 +1,5 @@
 'use client';
 
-import { useGlobalContext } from "./Context"
 import styles from './page.module.css'
 import theme from "./global/theme";
 import PrimaryButton from "./components/primaryButton";
@@ -11,7 +10,6 @@ import NewGameData from "./components/newGameData";
 
 
 export default function Home() {
-  const {userAge, userName, setUserAge, setUserName} = useGlobalContext()
   const [isAudioPlaying, setIsAudioPlaying] = React.useState(false);
   const [showCredits, setShowCredits] = React.useState(false);
   const [showNewGame, setShowNewGame] = React.useState(false);
@@ -63,7 +61,7 @@ export default function Home() {
         )}
         {showNewGame && (
           <div>
-           <NewGameData />
+           <NewGameData  goBack={() => setShowNewGame(false)} />
           </div>
         )}
       </animated.div>

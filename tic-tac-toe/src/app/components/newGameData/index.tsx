@@ -1,17 +1,35 @@
 import React from 'react';
 import styles from './newGame.module.css'
+import { setLocalStorage } from '@/services/localStorage';
+import PrimaryButton from '../primaryButton';
+import { IGameProps } from './newGame.structure';
 
-const NewGameData = () => {
+const NewGameData = (props: IGameProps) => {
+
   const [player1, setPlayer1] = React.useState('');
   const [player2, setPlayer2] = React.useState('');
   const [verticalFrames, setVerticalFrames] = React.useState('4');
   const [horizontalFrames, setHorizontalFrames] = React.useState('4');
+  const [isDisabled, setIsDisabled] = React.useState(true);
+
+
+  const handleClick = () => {
+    setLocalStorage('player1', player1 );
+    setLocalStorage('player2', player2 );
+    setLocalStorage('vertical', verticalFrames );
+    setLocalStorage('horizontal', horizontalFrames );
+  };
+  React.useEffect(() => {
+    const hasEmptyField = !player1.trim() || !player2.trim() || !verticalFrames.trim() || !horizontalFrames.trim();
+    const isFramesTooSmall = parseInt(verticalFrames) < 4 || parseInt(horizontalFrames) < 4;
+    setIsDisabled(hasEmptyField || isFramesTooSmall);
+  }, [player1, player2, verticalFrames, horizontalFrames]);
 
   return (
     <div>
       <div className={styles.content}>
       <label className={styles.label}>
-        Player 1:
+       Player 1
         <div className={styles.inputContainer}>
           <input
             className={styles.input}
@@ -25,7 +43,7 @@ const NewGameData = () => {
       </label>
       <br />
       <label className={styles.label}>
-        Player 2:
+        Player 2
         <div className={styles.inputContainer}>
           <input
             className={styles.input}
@@ -40,7 +58,7 @@ const NewGameData = () => {
       </div>
       <div className={styles.content}>
       <label className={styles.label}>
-       Quadros na Horizontal:
+       Quadros na Horizontal
         <div className={styles.inputContainer}>
           <input
             className={styles.input}
@@ -54,7 +72,7 @@ const NewGameData = () => {
       </label>
       <br />
       <label className={styles.label}>
-      Quadros na Vertical:
+      Quadros na Vertical
         <div className={styles.inputContainer}>
           <input
             className={styles.input}
@@ -67,10 +85,10 @@ const NewGameData = () => {
         </div>
       </label>
       </div>
-      <br />
-      <button className={styles.button} type="submit">
-        Start Game
-      </button>
+        <div className={styles.ButtonContainer}>
+         <PrimaryButton title='Voltar' onClick={props.goBack} />
+         <PrimaryButton navigate={!isDisabled} page={'/Configurations'} title='Jogar' isDisabled={isDisabled} onClick={isDisabled ? () => {} : handleClick} />
+        </div>
       </div>
   );
 };
