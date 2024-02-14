@@ -1,0 +1,33 @@
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 180px);
+    grid-template-rows: repeat(3, 110px);
+    gap: 1rem;
+    margin-top: 6vh;
+    height: 100vh;
+    justify-content: center;
+  }
+  
+  .cell {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: #e87a00;
+    border-radius: 1rem;
+    font-weight: bold;
+    color: #00000066;
+    cursor: pointer;
+  }
+.cell.X {
+  color: red;
+}
+.cell.O {
+  color: blue;
+}
+.cell.O, .cell.X {
+  cursor: not-allowed;
+}
+.cell:not(.O):not(.X):hover {
+  box-shadow: 0 12px 26px rgba(40, 28, 28, 0.555);
+}

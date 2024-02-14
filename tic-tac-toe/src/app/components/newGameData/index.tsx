@@ -86,8 +86,8 @@ const NewGameData = (props: IGameProps) => {
       </label>
       </div>
         <div className={styles.ButtonContainer}>
-         <PrimaryButton title='Voltar' onClick={props.goBack} />
-         <PrimaryButton navigate={!isDisabled} page={'/Board'} title='Jogar' isDisabled={isDisabled} onClick={isDisabled ? () => {} : handleClick} />
+         <PrimaryButton title='Voltar' onClick={props.goBack} /> 
+         <PrimaryButton navigate={true} page={'/playRoom'} title='Jogar' isDisabled={false} onClick={isDisabled ? () => {} : handleClick} />
         </div>
       </div>
   );
