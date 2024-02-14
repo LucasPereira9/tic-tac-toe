@@ -1,18 +1,37 @@
 import React from 'react';
 import styles from './board.module.css'
+import xAnimation from '../../assets/xAnimation.json'
+import oAnimation from '../../assets/oAnimation.json'
+import Lottie from 'lottie-react';
+
 
 const Board = () => {
     const emptyBoard = Array(9).fill('')
     const [board, setBoard] = React.useState(emptyBoard)
+    const [animations, setAnimations] = React.useState(Array(9).fill(null));
     const [currentPlayer, setCurrentPlayer] = React.useState('O')
+    const [winner, setWinner] = React.useState()
 
   const handleCellClick = (index: number) => {
+    if (winner) {
+        console.log('jogo finalizada')
+        return null;
+    }
     if (board[index] !== '') {
         return null;
     }
-    setBoard(board.map((item, Itemindex) => Itemindex === index ? currentPlayer : item ))
-    setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X')
+    const newBoard = board.map((item, Itemindex) => (Itemindex === index ? currentPlayer : item));
+    const newAnimations = [...animations];
+    newAnimations[index] = getAnimationForPlayer();
+
+    setBoard(newBoard);
+    setAnimations(newAnimations);
+    setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
     }
+    const getAnimationForPlayer = () => {
+        return currentPlayer === 'X' ? xAnimation : oAnimation;
+      };
+
     const generateWinningCombinations = (size) => {
         const combinations = [];
     
@@ -60,11 +79,14 @@ const Board = () => {
             if (values.every(value => value === "X")) {
                 winner = 'X';
             }
+
         });
 
         if (winner) {
-            console.log(`${winner} venceu!`);
-            // Lógica adicional para o vencedor
+            setWinner(winner)
+        } else 
+        if (board.every(cell => cell !== '')) {
+            setWinner('E');
         } else {
             console.log('Ninguém venceu ainda.');
         }
@@ -81,8 +103,11 @@ const Board = () => {
         <div key={index}
             className={`${styles.cell} ${item && styles[item]}`}
             onClick={() => handleCellClick(index)}>
-                {item}
+                <div>
+            {animations[index] && <Lottie loop={false} animationData={animations[index]} />}
+                </div>
         </div>
+        
         ))}
     </div>
    ) 

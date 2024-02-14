@@ -10,6 +10,22 @@ export default function PlayRoom() {
 
   const [player1, setPlayer1] = React.useState('');
   const [player2, setPlayer2] = React.useState('');
+  const [isAudioPlaying, setIsAudioPlaying] = React.useState(false);
+
+  React.useEffect(() => {
+    const startAudio = () => {
+      if (!isAudioPlaying) {
+        const audioElement = new Audio('../../../assets/soundEffects/menu.mp3');
+        audioElement.play();
+        audioElement.loop = true;
+        setIsAudioPlaying(true);
+      }
+    };
+    document.addEventListener('click', startAudio);
+    return () => {
+      document.removeEventListener('click', startAudio);
+    };
+  }, [isAudioPlaying]);
 
  React.useEffect(() => {
   setPlayer1(getLocalStorage('player1'))
@@ -33,7 +49,6 @@ export default function PlayRoom() {
           </div>
         </div>
         <Board />
-        
       </div>
     </div>
   )

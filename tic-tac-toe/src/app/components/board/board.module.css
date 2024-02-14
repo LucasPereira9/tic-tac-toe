@@ -14,16 +14,18 @@
     align-items: center;
     justify-content: center;
     background-color: #e87a00;
-    border-radius: 1rem;
+    border-radius: 0.3rem;
     font-weight: bold;
     color: #00000066;
     cursor: pointer;
   }
 .cell.X {
-  color: red;
+  display: flex;
+  justify-content: center;
 }
 .cell.O {
-  color: blue;
+  display: flex;
+  justify-content: center;
 }
 .cell.O, .cell.X {
   cursor: not-allowed;
